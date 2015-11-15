@@ -33,10 +33,16 @@ public class Player : MonoBehaviour {
 	}
 
 	private void Freeze() {
-		var childrenJoints = GetComponentsInChildren<DistanceJoint2D> ();
+		foreach (Transform child in GetComponent<Transform>()) {
+			if (child.GetComponent<HandsAndFeet>() != null) {
+				
+				Destroy(child.GetComponent<HandsAndFeet>());
+			}
+		}
+		var childrenJoints = GetComponentsInChildren<HingeJoint2D> ();
 		var childrenRigidBodies = GetComponentsInChildren<Rigidbody2D> ();
 
-		foreach(DistanceJoint2D joint in childrenJoints) {
+		foreach(HingeJoint2D joint in childrenJoints) {
 			Destroy(joint);
 		}
 		foreach (Rigidbody2D body in childrenRigidBodies) {

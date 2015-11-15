@@ -26,7 +26,7 @@ public class HandsAndFeet : MonoBehaviour {
 			GetComponent<SpriteRenderer> ().color = Color.red;
 		}
 
-		if (!isStuck) {			
+		if (isActive) {			
 			GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
 			float h = Input.GetAxisRaw("Horizontal");
 			float v = Input.GetAxisRaw("Vertical");		
@@ -41,6 +41,5 @@ public class HandsAndFeet : MonoBehaviour {
 			isStuck = true;
 			GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
 		}
-		Debug.Log("Collision");
 	}
 }

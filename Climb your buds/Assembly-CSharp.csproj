@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\GoalLine.cs" />
+     <Compile Include="Assets\HandsAndFeet.cs" />
      <Compile Include="Assets\MakePerson.cs" />
      <Compile Include="Assets\Player.cs" />
  <Reference Include="UnityEngine.UI">

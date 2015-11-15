@@ -1,6 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\HandsAndFeet.cs">
+    <Files>
+      <File FileName="Climb your buds.sln" Line="1" Column="1" />
+      <File FileName="Assets\Player.cs" Line="37" Column="69" />
+      <File FileName="Assets\MakePerson.cs" Line="1" Column="1" />
+      <File FileName="Assets\HandsAndFeet.cs" Line="26" Column="54" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -3,10 +3,12 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
-	public bool frozen = false;
+	public bool frozen = false;	
+	private GameObject goal;
+
 	// Use this for initialization
 	void Start () {
-	
+		goal = GameObject.Find ("Goal Line");
 	}
 	
 	// Update is called once per frame
@@ -17,6 +19,7 @@ public class Player : MonoBehaviour {
 	void FixedUpdate () {
 		if (!frozen) {
 			Movement ();
+			CheckHeight();
 
 			if (Input.GetKeyDown ("space")) {
 				Freeze ();
@@ -34,8 +37,7 @@ public class Player : MonoBehaviour {
 
 	private void Freeze() {
 		foreach (Transform child in GetComponent<Transform>()) {
-			if (child.GetComponent<HandsAndFeet>() != null) {
-				
+			if (child.GetComponent<HandsAndFeet>() != null) {				
 				Destroy(child.GetComponent<HandsAndFeet>());
 			}
 		}
@@ -49,5 +51,18 @@ public class Player : MonoBehaviour {
 			Destroy(body);
 		}
 		frozen = true;
+	}
+
+	private void CheckHeight() {
+		var goalTop = goal.transform.position.y;
+		foreach (Transform child in GetComponent<Transform>()) {
+ 			if (child.GetComponent<BoxCollider2D>() != null) {
+				var playerTop = child.GetComponent<Transform>().position.y + child.GetComponent<BoxCollider2D>().bounds.extents.y;
+				if (playerTop > goalTop) {		
+					goalTop = playerTop;
+					goal.transform.position = new Vector2(goal.transform.position.x, playerTop);
+				}
+			}
+		}
 	}
 }

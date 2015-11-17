@@ -22,24 +22,36 @@ public class HandsAndFeet : MonoBehaviour {
 			isStuck = false;
 			GetComponent<SpriteRenderer> ().color = Color.green;
 		} else {		
+			if (isStuck) {
+				FreezeLimb();
+			}
 			isActive = false;
 			GetComponent<SpriteRenderer> ().color = Color.red;
 		}
 
 		if (isActive) {			
+
 			GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
 			float h = Input.GetAxisRaw("Horizontal");
-			float v = Input.GetAxisRaw("Vertical");		
-			GetComponent<Rigidbody2D>().velocity = new Vector2(h, v) * movementSpeed;
+			float v = Input.GetAxisRaw("Vertical");	
+
+
+			if (h != 0 || v != 0) 
+			{			
+				var newX = GetComponent<Rigidbody2D>().position.x + (h * movementSpeed);
+				var newY = GetComponent<Rigidbody2D>().position.y + (v * movementSpeed);
+				GetComponent<Rigidbody2D>().MovePosition(new Vector2(newX, newY));
+			}
 		}
 	}
 
 	
 	void OnCollisionEnter2D(Collision2D collision) {
 		isStuck = true;
-		if (!isActive) {
-			isStuck = true;
-			GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
-		}
+		FreezeLimb ();
+	}
+
+	private void FreezeLimb() {		
+		GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
 	}
 }
